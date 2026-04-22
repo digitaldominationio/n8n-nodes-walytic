@@ -123,10 +123,16 @@ export class Walytic implements INodeType {
 						});
 					} else if (operation === 'sendGroup') {
 						const sid = this.getNodeParameter('sessionId', i) as string;
-						responseData = await callApi('POST', `/api/whatsapp/${sid}/send-group`, {
-							groupId: this.getNodeParameter('groupJid', i) as string,
+						const identifier = this.getNodeParameter('groupIdentifier', i) as string;
+						const body: Record<string, any> = {
 							message: this.getNodeParameter('message', i) as string,
-						});
+						};
+						if (identifier === 'groupName') {
+							body.groupName = this.getNodeParameter('groupName', i) as string;
+						} else {
+							body.groupId = this.getNodeParameter('groupJid', i) as string;
+						}
+						responseData = await callApi('POST', `/api/whatsapp/${sid}/send-group`, body);
 					} else if (operation === 'list') {
 						const qs: Record<string, any> = {};
 						const sid = this.getNodeParameter('sessionId', i, '') as string;

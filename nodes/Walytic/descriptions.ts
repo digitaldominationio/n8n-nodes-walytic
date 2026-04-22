@@ -279,12 +279,33 @@ const messageFields: INodeProperties[] = [
 	},
 	// group message
 	{
+		displayName: 'Group Identifier',
+		name: 'groupIdentifier',
+		type: 'options',
+		options: [
+			{ name: 'Group Name', value: 'groupName' },
+			{ name: 'Group JID', value: 'groupJid' },
+		],
+		default: 'groupName',
+		displayOptions: { show: { resource: ['message'], operation: ['sendGroup'] } },
+		description: 'Identify the group by name (case-insensitive match) or JID',
+	},
+	{
+		displayName: 'Group Name',
+		name: 'groupName',
+		type: 'string',
+		required: true,
+		default: '',
+		displayOptions: { show: { resource: ['message'], operation: ['sendGroup'], groupIdentifier: ['groupName'] } },
+		description: 'Case-insensitive match against group subjects',
+	},
+	{
 		displayName: 'Group JID',
 		name: 'groupJid',
 		type: 'string',
 		required: true,
 		default: '',
-		displayOptions: { show: { resource: ['message'], operation: ['sendGroup'] } },
+		displayOptions: { show: { resource: ['message'], operation: ['sendGroup'], groupIdentifier: ['groupJid'] } },
 		description: 'Group JID (e.g. 120363012345@g.us)',
 	},
 	{
