@@ -132,6 +132,10 @@ export class Walytic implements INodeType {
 						} else {
 							body.groupId = this.getNodeParameter('groupJid', i) as string;
 						}
+						const mentionsStr = this.getNodeParameter('mentions', i, '') as string;
+						if (mentionsStr) {
+							body.mentions = mentionsStr.split(',').map(s => s.trim()).filter(Boolean);
+						}
 						responseData = await callApi('POST', `/api/whatsapp/${sid}/send-group`, body);
 					} else if (operation === 'list') {
 						const qs: Record<string, any> = {};

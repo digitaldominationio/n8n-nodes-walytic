@@ -317,6 +317,14 @@ const messageFields: INodeProperties[] = [
 		default: '',
 		displayOptions: { show: { resource: ['message'], operation: ['sendGroup'] } },
 	},
+	{
+		displayName: 'Mentions (comma separated phones)',
+		name: 'mentions',
+		type: 'string',
+		default: '',
+		displayOptions: { show: { resource: ['message'], operation: ['sendGroup'] } },
+		description: 'Phone numbers to @mention in the message (E.164 digits, comma separated). Use @phone in the message text to place the mention.',
+	},
 	// list messages filters
 	{
 		displayName: 'Session ID',
