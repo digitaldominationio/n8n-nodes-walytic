@@ -1,0 +1,50 @@
+{
+  "name": "n8n-nodes-walytic",
+  "version": "0.1.0",
+  "description": "n8n community node for Walytic WhatsApp automation platform",
+  "keywords": [
+    "n8n-community-node-package",
+    "walytic",
+    "whatsapp",
+    "automation",
+    "crm",
+    "messaging"
+  ],
+  "license": "MIT",
+  "homepage": "https://walytic.com",
+  "author": {
+    "name": "Biswajit Pradhan",
+    "email": "biswajit@walytic.com",
+    "url": "https://walytic.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/digitaldominationio/n8n-nodes-walytic"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc && cp nodes/Walytic/walytic.svg dist/nodes/Walytic/walytic.svg && cp nodes/Walytic/walytic.svg dist/credentials/walytic.svg",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/WalyticApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Walytic/Walytic.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.16",
+    "n8n-workflow": "*",
+    "typescript": "^5.1.3"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
