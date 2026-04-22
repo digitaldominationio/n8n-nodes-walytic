@@ -89,7 +89,7 @@ export class Walytic implements INodeType {
 				else if (resource === 'message') {
 					if (operation === 'sendText') {
 						const sid = this.getNodeParameter('sessionId', i) as string;
-						responseData = await callApi('POST', `/api/sessions/${sid}/send`, {
+						responseData = await callApi('POST', `/api/whatsapp/${sid}/send`, {
 							phone: this.getNodeParameter('phone', i) as string,
 							message: this.getNodeParameter('message', i) as string,
 						});
@@ -104,11 +104,11 @@ export class Walytic implements INodeType {
 						if (caption) body.caption = caption;
 						const fileName = this.getNodeParameter('fileName', i, '') as string;
 						if (fileName) body.fileName = fileName;
-						responseData = await callApi('POST', `/api/sessions/${sid}/send-media`, body);
+						responseData = await callApi('POST', `/api/whatsapp/${sid}/send-media`, body);
 					} else if (operation === 'sendTemplate') {
 						const sid = this.getNodeParameter('sessionId', i) as string;
 						const vars = this.getNodeParameter('templateVariables', i, '[]') as string;
-						responseData = await callApi('POST', `/api/sessions/${sid}/send-template`, {
+						responseData = await callApi('POST', `/api/whatsapp/${sid}/send-template`, {
 							phone: this.getNodeParameter('phone', i) as string,
 							templateName: this.getNodeParameter('templateName', i) as string,
 							language: this.getNodeParameter('templateLanguage', i) as string,
@@ -116,15 +116,15 @@ export class Walytic implements INodeType {
 						});
 					} else if (operation === 'reply') {
 						const sid = this.getNodeParameter('sessionId', i) as string;
-						responseData = await callApi('POST', `/api/sessions/${sid}/send`, {
+						responseData = await callApi('POST', `/api/whatsapp/${sid}/send`, {
 							phone: this.getNodeParameter('phone', i) as string,
 							message: this.getNodeParameter('message', i) as string,
 							quotedMessageId: this.getNodeParameter('quotedMessageId', i) as string,
 						});
 					} else if (operation === 'sendGroup') {
 						const sid = this.getNodeParameter('sessionId', i) as string;
-						responseData = await callApi('POST', `/api/sessions/${sid}/send-group`, {
-							groupJid: this.getNodeParameter('groupJid', i) as string,
+						responseData = await callApi('POST', `/api/whatsapp/${sid}/send-group`, {
+							groupId: this.getNodeParameter('groupJid', i) as string,
 							message: this.getNodeParameter('message', i) as string,
 						});
 					} else if (operation === 'list') {
