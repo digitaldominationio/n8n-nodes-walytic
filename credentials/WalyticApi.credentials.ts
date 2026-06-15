@@ -21,6 +21,15 @@ export class WalyticApi implements ICredentialType {
 			description: 'Your Walytic API key from Settings > API Keys',
 		},
 		{
+			displayName: 'Workspace ID',
+			name: 'workspaceId',
+			type: 'string',
+			default: '',
+			required: true,
+			description:
+				'Active workspace/client ID. Find it in Settings > API Keys or the workspace switcher.',
+		},
+		{
 			displayName: 'Base URL',
 			name: 'baseUrl',
 			type: 'string',
@@ -34,6 +43,7 @@ export class WalyticApi implements ICredentialType {
 		properties: {
 			headers: {
 				'x-api-key': '={{$credentials.apiKey}}',
+				'X-Workspace-Id': '={{$credentials.workspaceId}}',
 			},
 		},
 	};
@@ -41,7 +51,7 @@ export class WalyticApi implements ICredentialType {
 	test: ICredentialTestRequest = {
 		request: {
 			baseURL: '={{$credentials.baseUrl}}',
-			url: '/api/health',
+			url: '/api/sessions',
 			method: 'GET',
 		},
 	};

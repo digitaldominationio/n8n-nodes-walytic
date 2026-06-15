@@ -18,61 +18,65 @@ npm install n8n-nodes-walytic
 
 ## Configuration
 
-1. In Walytic, go to **Settings > API Keys** and generate an API key
-2. In n8n, create a new **Walytic API** credential
-3. Paste your API key and set the base URL (defaults to `https://api.walytic.com`)
+1. In Walytic, open **Settings > API Keys** and generate an API key (copy it once, it is not displayed again).
+2. Copy your **Workspace ID** from the same Settings > API Keys page or the workspace switcher.
+3. In n8n, create a new **Walytic API** credential and supply:
+   - **API Key** (sent as the `x-api-key` header)
+   - **Workspace ID** (sent as the `X-Workspace-Id` header)
+   - **Base URL** (defaults to `https://api.walytic.com`)
+
+Every request must include both the API key and the workspace ID. The API key must belong to that workspace.
+
+## sessionId — your WhatsApp number
+
+Most messaging operations take a `sessionId`, which is your connected WhatsApp number in **E.164 digits without the plus sign** (e.g. `919876543210`). Connect a number via **Session > Create / Reconnect**, scan the QR over Socket.IO, then use that digit-only string everywhere a sessionId is required.
 
 ## Resources & Operations
 
 ### Session
-- **List** all connected WhatsApp sessions
-- **Create** a new WhatsApp session
-- **Delete** (disconnect) a session
+- **List**, **Create / Reconnect**, **Delete**, **Get Status**
 
 ### Message
-- **Send Text** to a phone number
-- **Send Media** (image, video, document, audio)
-- **Send Template** with variables
-- **Reply** to a specific message
-- **Send to Group** via group JID
-- **List** messages with filters
+- **Send Text** — `{ number, message, htmlMessage? }`
+- **Send Media** — `{ fileUrl, caption?, number | groupId | groupName }`
+- **Send to Group** — `{ message, groupName | groupId, mentions? }`
+- **Update Status (Story)** — text or media story
+- **List**, **Approve Pending**, **Get All History**, **Get Chat History**
+
+### Group
+- **List** groups (processed), **List Groups Raw**, **Get Members**
 
 ### Contact
-- **List** contacts with filtering (stage, tags, search, lead status)
-- **Get** a single contact
-- **Create** or upsert a contact
-- **Update** contact fields
-- **Delete** a contact
-- **Promote** a contact to a lead
-- **Merge** two contacts
-- **Sync** contacts from WhatsApp message history
-- **Bulk Update Stage** for multiple contacts
+- **List / Get / Create / Update / Delete**
+- **Promote to Lead**, **Assign Flow**, **Remove Flow**
+- **Bulk Assign Flow**, **Bulk Update Stage**
+- **Merge**, **Sync from WhatsApp**
+
+### Conversation
+- **List**, **Mark Read**
 
 ### Campaign (Outreach)
-- **List** all campaigns
-- **Get** campaign with executions and stats
-- **Create** a campaign (manual or filter-based targeting)
-- **Update** campaign settings
-- **Delete** a campaign
-- **Toggle** start/pause
-- **Assign/Unassign Contacts** to a campaign
-- **Get Stats** per-session
+- **List / Get / Create / Update / Delete / Toggle / Duplicate**
+- **Assign Leads**, **Unassign Leads**, **Resolve Filters**, **Get Stats**
+
+### Bulk Campaign
+- **List**, **Pause**, **Resume**, **Delete** (file upload is dashboard-only for now)
 
 ### AutoFlow
-- **List** all autoflows
-- **Get** autoflow by ID
-- **Create/Update/Delete** autoflows
-- **Toggle** enable/disable
-- **Get Executions** history
+- **List / Get / Create / Update / Delete / Toggle / List Executions**
+
+### Webhook
+- **List by Session**, **Create / Upsert**, **Update by ID**, **Delete by ID / Session**, **Rotate Secret**, **Send Test**
+
+### Verification
+- **Verify Single**, **History**, **Clear History**
 
 ### Report
-- **Overview** dashboard stats
-- **Messages Daily/Hourly/Status** breakdowns
-- **Campaign Stats** aggregated
+- **Overview**, **Messages Daily / Status / Hourly**, **Campaign Stats**
 
 ## API Documentation
 
-Full API spec available at: `https://api.walytic.com/api/openapi.json`
+Full OpenAPI spec: `https://api.walytic.com/api/openapi.json`
 
 ## License
 
