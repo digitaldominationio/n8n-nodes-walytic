@@ -835,6 +835,11 @@ const autoflowFields: INodeProperties[] = [
 		},
 	},
 	{
+		...sessionIdBase,
+		displayOptions: { show: { resource: ['autoflow'], operation: ['create'] } },
+		description: 'WhatsApp session (E.164 digits) the flow runs on',
+	},
+	{
 		displayName: 'Name',
 		name: 'name',
 		type: 'string',
@@ -972,9 +977,10 @@ const verifyFields: INodeProperties[] = [
 		displayName: 'Session ID',
 		name: 'session',
 		type: 'string',
+		required: true,
 		default: '',
-		displayOptions: { show: { resource: ['verify'], operation: ['history'] } },
-		description: 'Filter by session (optional)',
+		displayOptions: { show: { resource: ['verify'], operation: ['history', 'clear'] } },
+		description: 'WhatsApp number (E.164 digits). Required to scope history/clear to your session.',
 	},
 ];
 

@@ -64,12 +64,14 @@ Most messaging operations take a `sessionId`, which is your connected WhatsApp n
 
 ### AutoFlow
 - **List / Get / Create / Update / Delete / Toggle / List Executions**
+  - Create requires a `sessionId` (the WhatsApp number the flow runs on)
 
 ### Webhook
 - **List by Session**, **Create / Upsert**, **Update by ID**, **Delete by ID / Session**, **Rotate Secret**, **Send Test**
 
 ### Verification
 - **Verify Single**, **History**, **Clear History**
+  - History and Clear History require a `sessionId` (the WhatsApp number) to scope the operation
 
 ### Report
 - **Overview**, **Messages Daily / Status / Hourly**, **Campaign Stats**

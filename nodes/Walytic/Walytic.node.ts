@@ -409,6 +409,7 @@ export class Walytic implements INodeType {
 					} else if (operation === 'create') {
 						const body: Record<string, any> = {
 							name: this.getNodeParameter('name', i) as string,
+							sessionId: this.getNodeParameter('sessionId', i) as string,
 							nodes: parseJsonArray(this.getNodeParameter('nodes', i, '[]')),
 							edges: parseJsonArray(this.getNodeParameter('edges', i, '[]')),
 						};
@@ -495,7 +496,8 @@ export class Walytic implements INodeType {
 						if (session) qs.session = session;
 						responseData = await callApi('GET', '/api/verify/history', undefined, qs);
 					} else if (operation === 'clear') {
-						responseData = await callApi('DELETE', '/api/verify/clear');
+						const session = this.getNodeParameter('session', i) as string;
+						responseData = await callApi('DELETE', '/api/verify/clear', undefined, { session });
 					}
 				}
 
@@ -527,10 +529,11 @@ export class Walytic implements INodeType {
 				if (responseData === undefined) {
 					responseData = { success: true };
 				}
-				if (Array.isArray(responseData?.data)) {
-					returnData.push(...responseData.data.map((item: any) => ({ json: item, pairedItem: { item: i } })));
-				} else if (Array.isArray(responseData?.contacts)) {
-					returnData.push(...responseData.contacts.map((item: any) => ({ json: item, pairedItem: { item: i } })));
+				const listKey = ['data', 'contacts', 'groups', 'records', 'members', 'results'].find(
+					(k) => Array.isArray(responseData?.[k]),
+				);
+				if (listKey) {
+					returnData.push(...responseData[listKey].map((item: any) => ({ json: item, pairedItem: { item: i } })));
 				} else if (Array.isArray(responseData)) {
 					returnData.push(...responseData.map((item: any) => ({ json: item, pairedItem: { item: i } })));
 				} else {
