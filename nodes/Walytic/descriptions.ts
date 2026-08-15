@@ -531,7 +531,7 @@ const contactFields: INodeProperties[] = [
 			{ displayName: 'Email', name: 'email', type: 'string', default: '' },
 			{ displayName: 'Stage', name: 'stage', type: 'options', options: STAGE_OPTIONS, default: 'new' },
 			{ displayName: 'Source', name: 'source', type: 'string', default: 'n8n' },
-			{ displayName: 'Tags (comma separated)', name: 'tags', type: 'string', default: '' },
+			{ displayName: 'Tags (Comma Separated)', name: 'tags', type: 'string', default: '' },
 			{ displayName: 'Notes', name: 'notes', type: 'string', default: '' },
 			{ displayName: 'Is Lead', name: 'isLead', type: 'boolean', default: true },
 			{ displayName: 'Session ID', name: 'sessionId', type: 'string', default: '' },
@@ -550,7 +550,7 @@ const contactFields: INodeProperties[] = [
 			{ displayName: 'Last Name', name: 'lastName', type: 'string', default: '' },
 			{ displayName: 'Email', name: 'email', type: 'string', default: '' },
 			{ displayName: 'Stage', name: 'stage', type: 'options', options: STAGE_OPTIONS, default: 'new' },
-			{ displayName: 'Tags (comma separated)', name: 'tags', type: 'string', default: '' },
+			{ displayName: 'Tags (Comma Separated)', name: 'tags', type: 'string', default: '' },
 			{ displayName: 'Notes', name: 'notes', type: 'string', default: '' },
 			{ displayName: 'Is Lead', name: 'isLead', type: 'boolean', default: false },
 			{ displayName: 'Session ID', name: 'sessionId', type: 'string', default: '' },
@@ -570,7 +570,7 @@ const contactFields: INodeProperties[] = [
 			{ displayName: 'Email', name: 'email', type: 'string', default: '' },
 			{ displayName: 'Stage', name: 'stage', type: 'options', options: STAGE_OPTIONS, default: 'new' },
 			{ displayName: 'Source', name: 'source', type: 'string', default: '' },
-			{ displayName: 'Tags (comma separated)', name: 'tags', type: 'string', default: '' },
+			{ displayName: 'Tags (Comma Separated)', name: 'tags', type: 'string', default: '' },
 			{ displayName: 'Notes', name: 'notes', type: 'string', default: '' },
 		],
 	},
@@ -585,7 +585,7 @@ const contactFields: INodeProperties[] = [
 	},
 	// bulkAssignFlow / bulkUpdateStage
 	{
-		displayName: 'Contact IDs (comma separated)',
+		displayName: 'Contact IDs (Comma Separated)',
 		name: 'contactIds',
 		type: 'string',
 		required: true,
@@ -682,7 +682,7 @@ const campaignFields: INodeProperties[] = [
 		displayOptions: { show: { resource: ['campaign'], operation: ['create'] } },
 	},
 	{
-		displayName: 'Session IDs (comma separated)',
+		displayName: 'Session IDs (Comma Separated)',
 		name: 'sessionIds',
 		type: 'string',
 		required: true,
@@ -710,21 +710,21 @@ const campaignFields: INodeProperties[] = [
 		displayOptions: { show: { resource: ['campaign'], operation: ['create'] } },
 	},
 	{
-		displayName: 'Lead Contact IDs (comma separated)',
+		displayName: 'Lead Contact IDs (Comma Separated)',
 		name: 'leads',
 		type: 'string',
 		default: '',
 		displayOptions: { show: { resource: ['campaign'], operation: ['create'], targetType: ['manual'] } },
 	},
 	{
-		displayName: 'Filter Tags (comma separated)',
+		displayName: 'Filter Tags (Comma Separated)',
 		name: 'filterTags',
 		type: 'string',
 		default: '',
 		displayOptions: { show: { resource: ['campaign'], operation: ['create'], targetType: ['filter'] } },
 	},
 	{
-		displayName: 'Filter Stages (comma separated)',
+		displayName: 'Filter Stages (Comma Separated)',
 		name: 'filterStages',
 		type: 'string',
 		default: '',
@@ -754,7 +754,7 @@ const campaignFields: INodeProperties[] = [
 			{ displayName: 'Name', name: 'name', type: 'string', default: '' },
 			{ displayName: 'Messages (JSON Array)', name: 'messages', type: 'json', default: '[]' },
 			{ displayName: 'Duration', name: 'duration', type: 'string', default: '' },
-			{ displayName: 'Session IDs (comma separated)', name: 'sessionIds', type: 'string', default: '' },
+			{ displayName: 'Session IDs (Comma Separated)', name: 'sessionIds', type: 'string', default: '' },
 			{
 				displayName: 'Target Type', name: 'targetType', type: 'options',
 				options: [
@@ -763,15 +763,15 @@ const campaignFields: INodeProperties[] = [
 				],
 				default: 'manual',
 			},
-			{ displayName: 'Filter Tags (comma separated)', name: 'filterTags', type: 'string', default: '' },
-			{ displayName: 'Filter Stages (comma separated)', name: 'filterStages', type: 'string', default: '' },
+			{ displayName: 'Filter Tags (Comma Separated)', name: 'filterTags', type: 'string', default: '' },
+			{ displayName: 'Filter Stages (Comma Separated)', name: 'filterStages', type: 'string', default: '' },
 			{ displayName: 'Stop on Reply', name: 'stopOnReply', type: 'boolean', default: true },
 			{ displayName: 'Recompute Running', name: 'recomputeRunning', type: 'boolean', default: false, description: 'Whether to recompute nextSendAt for running leads when messages change' },
 		],
 	},
 	// Assign / Unassign
 	{
-		displayName: 'Contact IDs (comma separated)',
+		displayName: 'Contact IDs (Comma Separated)',
 		name: 'contactIds',
 		type: 'string',
 		required: true,
@@ -793,14 +793,14 @@ const campaignFields: INodeProperties[] = [
 	},
 	// ResolveFilters
 	{
-		displayName: 'Tags (comma separated)',
+		displayName: 'Tags (Comma Separated)',
 		name: 'tags',
 		type: 'string',
 		default: '',
 		displayOptions: { show: { resource: ['campaign'], operation: ['resolveFilters'] } },
 	},
 	{
-		displayName: 'Stages (comma separated)',
+		displayName: 'Stages (Comma Separated)',
 		name: 'stages',
 		type: 'string',
 		default: '',
@@ -892,7 +892,7 @@ const webhookFields: INodeProperties[] = [
 		displayOptions: { show: { resource: ['webhook'], operation: ['upsert', 'update'] } },
 	},
 	{
-		displayName: 'Events (comma separated)',
+		displayName: 'Events (Comma Separated)',
 		name: 'events',
 		type: 'string',
 		required: true,
@@ -910,7 +910,7 @@ const webhookFields: INodeProperties[] = [
 		options: [
 			{ displayName: 'Label', name: 'label', type: 'string', default: '' },
 			{
-				displayName: 'Filter Senders (comma separated)',
+				displayName: 'Filter Senders (Comma Separated)',
 				name: 'filterSenders',
 				type: 'string',
 				default: '',
@@ -998,9 +998,9 @@ const reportFields: INodeProperties[] = [
 			},
 		},
 		options: [
-			{ displayName: 'Days (rolling window)', name: 'days', type: 'number', default: 30 },
-			{ displayName: 'From (ISO date)', name: 'from', type: 'string', default: '' },
-			{ displayName: 'To (ISO date)', name: 'to', type: 'string', default: '' },
+			{ displayName: 'Days (Rolling Window)', name: 'days', type: 'number', default: 30 },
+			{ displayName: 'From (ISO Date)', name: 'from', type: 'string', default: '' },
+			{ displayName: 'To (ISO Date)', name: 'to', type: 'string', default: '' },
 		],
 	},
 ];
